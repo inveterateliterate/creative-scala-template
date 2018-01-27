@@ -4,20 +4,7 @@ import doodle.syntax._
 import doodle.jvm.Java2DFrame._
 import doodle.backend.StandardInterpreter._
 
-// To use this example, open the SBT console and type:
-// Example.image.draw
-object Example {
-  val image = circle(10).fillColor(Color.red) on circle(20) on circle(30)
-
-  def main(args: Array[String]): Unit = {
-    image.draw
-  }
-
-  def square(num: Int): Int = num * num
-  def halve(num: Double): Double = num / 2
-
-  // RECURSION
-
+object Recursion {
   def boxes(count: Int): Image = {
     val aBox = Image.rectangle(20, 20).fillColor(Color.royalBlue)
     def loop(count: Int): Image =
@@ -37,7 +24,6 @@ object Example {
       case n => circ above (circ beside cross(n-1) beside circ) above circ
     }
   }
-
 
   def chessboard(count: Int): Image = {
     val redSquare = rectangle(20,20).fillColor(Color.red)
@@ -75,13 +61,14 @@ object Example {
     }
   }
 
+  // Concentric Circles
+
   def concentricCircles(count: Int, size: Int): Image = {
     count match {
       case 0 => Image.empty
       case n => circle(size).lineColor(Color.royalBlue).lineWidth(2.4) on concentricCircles(n-1, size + 5)
     }
   }
-
 
   def concentricAlpha(count: Int, size: Int, transparency: Double): Image = {
     count match {
